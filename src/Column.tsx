@@ -5,6 +5,10 @@ interface ColumnProps {
   text:string
 }
 
+// type React.PropsWithChildren<P> = P & {
+//   children?: React.ReactNode;
+// }
+
 export const Column = ({text, children}: React.PropsWithChildren<ColumnProps>) => {
   return (
   <ColumnContainer>
