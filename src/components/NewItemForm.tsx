@@ -19,5 +19,4 @@ return (
     </NewItemButton>
   </NewItemFormContainer>
 )
-
 }
