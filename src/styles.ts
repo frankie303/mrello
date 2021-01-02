@@ -2,7 +2,21 @@ import styled from 'styled-components';
 
 export const AppContainer = styled.div`
   align-items: flex-start;
-  background-color: #3179ba;
+  background-image: linear-gradient(
+    to bottom,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
   display: flex;
   flex-direction: row;
   height: 100%;
@@ -10,7 +24,17 @@ export const AppContainer = styled.div`
   width: 100%;
 `;
 
-export const ColumnContainer = styled.div`
+interface DragPreviewContainerProps {
+  isHidden?: boolean;
+  isPreview?: boolean;
+}
+
+export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  transform: ${props => (props.isPreview ? 'rotate(5deg)' : undefined)};
+  opacity: ${props => (props.isHidden ? 0 : 1)};
+`;
+
+export const ColumnContainer = styled(DragPreviewContainer)`
   background-color: #ebecf0;
   width: 300px;
   min-height: 40px;
@@ -18,6 +42,7 @@ export const ColumnContainer = styled.div`
   border-radius: 3px;
   padding: 8px 8px;
   flex-grow: 0;
+  flex-shrink: 0;
 `;
 
 export const ColumnTitle = styled.div`
@@ -25,7 +50,7 @@ export const ColumnTitle = styled.div`
   font-weight: bold;
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(DragPreviewContainer)`
   background-color: #fff;
   cursor: pointer;
   margin-bottom: 0.5rem;
@@ -63,6 +88,15 @@ export const NewItemFormContainer = styled.div`
   align-items: flex-start;
 `;
 
+export const NewItemInput = styled.input`
+  border-radius: 3px;
+  border: none;
+  box-shadow: #091e4240 0px 1px 0px 0px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+`;
+
 export const NewItemButton = styled.button`
   background-color: #5aac44;
   border-radius: 3px;
@@ -73,11 +107,12 @@ export const NewItemButton = styled.button`
   text-align: center;
 `;
 
-export const NewItemInput = styled.input`
-  border-radius: 3px;
-  border: none;
-  box-shadow: #091e4240 0px 1px 0px 0px;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
+export const CustomDragLayerContainer = styled.div`
+  height: 100%;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: 100;
 `;
